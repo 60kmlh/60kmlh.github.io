@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="60kmlh"><title>《图解http》第二章笔记 | 60kmlh</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/5.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">《图解http》第二章笔记</h1><a id="logo" href="/.">60kmlh</a><p class="description">Focus on where you want to go, not on what you fear.</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">《图解http》第二章笔记</h1><div class="post-meta">Sep 16, 2017<span> | </span><span class="category"><a href="/categories/笔记/">笔记</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><h2 id="简单的http协议"><a href="#简单的http协议" class="headerlink" title="简单的http协议"></a>简单的http协议</h2><p>两台计算机使用HTTP协议进行通信时，在一条通信线路上必定有一端是客户端，另一端则是客户端。</p>
+<h3 id="下面是客户端发给某个HTTP客户端的请求报文中的内容。"><a href="#下面是客户端发给某个HTTP客户端的请求报文中的内容。" class="headerlink" title="下面是客户端发给某个HTTP客户端的请求报文中的内容。"></a>下面是客户端发给某个HTTP客户端的请求报文中的内容。</h3><figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">GET</span> <span class="string">/index.html</span> HTTP/1.1</div><div class="line"><span class="attribute">HOST</span>: hackr.jp</div></pre></td></tr></table></figure>
+<p>GET表示请求访问服务器的类型，称为方法（method）。</p>
+<p>随后的/index.html指明请求访问的资源对象，叫做请求URI（request-URI）。</p>
+<p>最后的HTTP/1.1表明HTTP的版本号。</p>
+<p>请求报文由请求方法、请求URI、协议版本、可选的请求首部字段和内容实体构成。</p>
+<h3 id="接收到请求的服务器，会将请求内容的处理结果以响应的形式返回。"><a href="#接收到请求的服务器，会将请求内容的处理结果以响应的形式返回。" class="headerlink" title="接收到请求的服务器，会将请求内容的处理结果以响应的形式返回。"></a>接收到请求的服务器，会将请求内容的处理结果以响应的形式返回。</h3><figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 <span class="number">200</span> OK</div><div class="line"><span class="attribute">Date</span>: Tue, 10 Jul 2012 06:50:15 GMT</div><div class="line"><span class="attribute">Content-Length</span>: 362</div><div class="line"><span class="attribute">Content-Type</span>: text/html</div><div class="line"></div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></div><div class="line">....</div></pre></td></tr></table></figure>
+<p>开头的HTTP/1.1代表服务端对应的HTTP版本。</p>
+<p>紧接着的200 OK代表请求的处理结果的状态码（status code）和原因短语（reason-phrase）。</p>
+<p>下一行显示创建响应的日期时间、内容长度、内容类型，是首部字段（header field）内的一个属性。</p>
+<p>接着以一空行分隔，之后的内容称为资源内容的主体（entity body）。</p>
+<p>响应报文基本上由协议版本、状态码、解释状态码的原因短语、可选的响应首部字段已经实体主体构成。</p>
+<h3 id="HTTP是一种不保存状态，即无状态（stateless）协议。"><a href="#HTTP是一种不保存状态，即无状态（stateless）协议。" class="headerlink" title="HTTP是一种不保存状态，即无状态（stateless）协议。"></a>HTTP是一种不保存状态，即无状态（stateless）协议。</h3><p>http协议自身不对请求和响应之间的通信状态进行保存。</p>
+<h3 id="请求URI定位资源"><a href="#请求URI定位资源" class="headerlink" title="请求URI定位资源"></a>请求URI定位资源</h3><p>请求指定URI的方式</p>
+<ol>
+<li><p>URI为完整的URI</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">GET</span> <span class="string">http://hackr.jp/index.htm</span> HTTP/1.1</div></pre></td></tr></table></figure>
+</li>
+<li><p>在首部字段Host中写明网络域名或IP地址</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">GET</span> <span class="string">/index.htm</span> HTTP/1.1</div><div class="line"><span class="attribute">Host</span>: hackr.jp</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="告知服务器意图的HTTP方法"><a href="#告知服务器意图的HTTP方法" class="headerlink" title="告知服务器意图的HTTP方法"></a>告知服务器意图的HTTP方法</h3><ul>
+<li><p>GET：获取资源</p>
+<p>  用来请求访问已被URI识别的资源。指定的资源经服务端解析后返回响应的内容。</p>
+</li>
+<li><p>POST：传输主体实体</p>
+<p>  用来传输实体的主体。</p>
+</li>
+<li><p>PUT：传输文件</p>
+<p>  要求在请求报文的主体包含文件内容，然后保存到URI指定的位置。</p>
+<p>  鉴于HTTP/1.1的PUT方法不带验证机制，任何人都可以上传文件，因此存在安全性问题,一般不使用。</p>
+</li>
+<li><p>HEAD：获得报文首部</p>
+<p>  HEAD方法和GET方法一样，这是不返回报文的主体部分。</p>
+<p>  用于确认URI的有效性及资源更新的日期时间等。</p>
+</li>
+<li><p>DELETE：删除文件</p>
+<p>  DELETE方法按请求的URI删除指定的资源。</p>
+<p>  但是DELETE方法和PUT方法一样不带验证机制，一般也不使用DELETE方法。</p>
+</li>
+<li><p>OPTIONS：查询支持的方法</p>
+<p>  用来查询针对请求URI指定的资源支持的方法。</p>
+</li>
+<li><p>TRACE：追踪路径</p>
+<p>  TRACE方法是让Web服务器将之前请求通信环回给客户端的方法。可以查询发送出去的请求是怎样被加工或者篡改的。</p>
+</li>
+<li><p>CONNECT：要求用隧道协议连接代理</p>
+<p>  该方法要求在与代理服务器通信时建立隧道，实现用隧道协议进行TCP通信。</p>
+<p>  主要使用SSL（Secure Sockets Layer，安全套接层）和TLS（Transport Layer Security，传输层安全）协议把通信内容加密后经网络隧道传输。</p>
+<h3 id="持久连接节省通信量"><a href="#持久连接节省通信量" class="headerlink" title="持久连接节省通信量"></a>持久连接节省通信量</h3></li>
+</ul>
+<ol>
+<li>持久连接<br>在初始版本的HTTP协议中，每进行一次HTTP通信就要断开一次TCP连接，增加通信量的开销。</li>
+</ol>
+<p>为解决上述TCP连接的问题，HTTP/1.1和一部分HTTP/1.0提出了持久化的连接（HTTP Persistent Connections），也叫做HTTP keep-alive或HTTP connection reuse。</p>
+<p>持久化连接的特点是，只要任意一方没有明确提出断开连接，则保持TCP连接状态。</p>
+<p>好处是减少了TCP连接的重复建立和断开所造成的额外开销，减轻服务器端的负载。减少开销的那部分时间，使得Web页面的显示速度提高。</p>
+<p>在HTTP/1.1中，默认所有连接都是持久连接。</p>
+<p>持久连接使得多数请求以管线化（pipeling）方式发送成为可能，可以并行发送请求。</p>
+<h3 id="使用cookie的状态管理"><a href="#使用cookie的状态管理" class="headerlink" title="使用cookie的状态管理"></a>使用cookie的状态管理</h3><p>cookie技术通过在请求和响应的报文中写入cookie信息来控制服务端状态。</p>
+<p>cookie会根据从服务器发送的响应报文内的一个叫做Set-Cookie的首部字段信息，通知客户端保存cookie。下次客户端再往服务端发送请求时，客户端会自动在请求报文中加入cookie值后发送出去。</p>
+<p>服务端接收到客户端发送过来的cookie后会去检查究竟是哪个客户端发来的连接请求，对比服务器上的记录，最后得到之前的状态信息。</p>
+<h3 id="If-Modified-Since"><a href="#If-Modified-Since" class="headerlink" title="If-Modified-Since"></a>If-Modified-Since</h3><p>If-Modified-Since是标准的HTTP请求头标签，在发送HTTP请求时，把浏览器端缓存页面的最后修改时间一起发到服务器去，服务器会把这个时间与服务器上实际文件的最后修改时间进行比较。</p>
+<p>如果时间一致，那么返回HTTP状态码304（不返回文件内容），客户端接到之后，就直接把本地缓存文件显示到浏览器中。</p>
+<p>如果时间不一致，就返回HTTP状态码200和新的文件内容，客户端接到之后，会丢弃旧文件，把新文件缓存起来，并显示到浏览器中。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since</a></li>
+<li><a href="http://www.cnblogs.com/zh2000g/archive/2010/03/22/1692002.html" target="_blank" rel="external">http://www.cnblogs.com/zh2000g/archive/2010/03/22/1692002.html</a></li>
+</ul>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://60kmlh.github.io/2017/09/16/《图解http》第二章笔记/" data-id="cj84k7pza000nmfb4yjcpgcbn" class="article-share-link">分享到</a><div class="tags"><a href="/tags/http/">http</a></div><div class="post-nav"><a href="/2017/09/15/《图解http》第一章笔记/" class="pre">《图解http》第一章读书笔记</a><a href="/2017/09/16/《图解http》第三章笔记/" class="next">《图解http》第三章笔记</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://60kmlh.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工作总结/">工作总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/测试/">测试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/工具/">工具</a></li></ul></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/mocha/" style="font-size: 15px;">mocha</a> <a href="/tags/FormData/" style="font-size: 15px;">FormData</a> <a href="/tags/iOS/" style="font-size: 15px;">iOS</a> <a href="/tags/iframe/" style="font-size: 15px;">iframe</a> <a href="/tags/bug/" style="font-size: 15px;">bug</a> <a href="/tags/object/" style="font-size: 15px;">object</a> <a href="/tags/function/" style="font-size: 15px;">function</a> <a href="/tags/promise/" style="font-size: 15px;">promise</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/http/" style="font-size: 15px;">http</a> <a href="/tags/正则表达式/" style="font-size: 15px;">正则表达式</a> <a href="/tags/gulp/" style="font-size: 15px;">gulp</a> <a href="/tags/效率/" style="font-size: 15px;">效率</a> <a href="/tags/karma/" style="font-size: 15px;">karma</a> <a href="/tags/babel/" style="font-size: 15px;">babel</a> <a href="/tags/chai/" style="font-size: 15px;">chai</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/性能优化/" style="font-size: 15px;">性能优化</a> <a href="/tags/npm/" style="font-size: 15px;">npm</a> <a href="/tags/版本/" style="font-size: 15px;">版本</a> <a href="/tags/audio/" style="font-size: 15px;">audio</a> <a href="/tags/用户体验/" style="font-size: 15px;">用户体验</a> <a href="/tags/vue-router/" style="font-size: 15px;">vue-router</a> <a href="/tags/管理系统/" style="font-size: 15px;">管理系统</a> <a href="/tags/权限控制/" style="font-size: 15px;">权限控制</a> <a href="/tags/‘效率’/" style="font-size: 15px;">‘效率’</a> <a href="/tags/canvas/" style="font-size: 15px;">canvas</a> <a href="/tags/dpr/" style="font-size: 15px;">dpr</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/30/iOS的iframe宽度bug/">iOS的iframe宽度bug</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/《图解http》第四章笔记/">《图解http》第四章笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/16/《图解http》第二章笔记/">《图解http》第二章笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/16/《图解http》第三章笔记/">《图解http》第三章笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/15/《图解http》第一章笔记/">《图解http》第一章读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/08/《精通正则表达式》第一章笔记/">《精通正则表达式》第一章笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/01/视网膜屏下的canvas清晰度处理/">视网膜屏下的canvas清晰度处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/27/babel常用配置记录/">babel常用配置记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/26/借助webpack实现前端代码的懒加载/">借助webpack实现前端代码的懒加载</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/05/关于npm依赖包版本号的规则/">关于npm依赖包版本号的规则</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">60kmlh.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
