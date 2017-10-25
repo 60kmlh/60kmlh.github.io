@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="60kmlh"><title>《图解http》第六章笔记 | 60kmlh</title><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/5.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">《图解http》第六章笔记</h1><a id="logo" href="/.">60kmlh</a><p class="description">好记性不如烂笔头</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">《图解http》第六章笔记</h1><div class="post-meta">Oct 20, 2017<span> | </span><span class="category"><a href="/categories/笔记/">笔记</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><h2 id="http-报文首部"><a href="#http-报文首部" class="headerlink" title="http 报文首部"></a>http 报文首部</h2><p>HTTP报文首部起到传递额外重要信息的作用。</p>
+<p>HTTP请求报文首部由方法、URI、HTTP版本、请求首部字段、通用首部字段、实体首部字段构成。</p>
+<p>HTTP响应报文首部由HTTP版本、状态码、响应首部字段、通用首部字段、实体首部字段构成。</p>
+<h3 id="http-首部字段的四种类型"><a href="#http-首部字段的四种类型" class="headerlink" title="http 首部字段的四种类型"></a>http 首部字段的四种类型</h3><p>HTTP首部字段根据实际用途被分为以下四类：</p>
+<ul>
+<li><p>通用首部字段（General Header Fields）</p>
+<p>请求报文和响应报文都会使用的首部</p>
+</li>
+<li><p>请求首部字段（Requset Header Fields）</p>
+<p>从客户端向服务端发送请求报文时使用的首部。</p>
+</li>
+<li><p>响应首部字段（Response Header Fields）</p>
+<p>从服务端向客户端返回响应报文时使用的首部。</p>
+</li>
+<li><p>实体首部字段（Entity Header Fields）</p>
+<p>针对请求报文和响应报文的实体部分使用的首部。</p>
+<h3 id="End-to-end-首部和Hop-by-hop-首部"><a href="#End-to-end-首部和Hop-by-hop-首部" class="headerlink" title="End-to-end 首部和Hop-by-hop 首部"></a>End-to-end 首部和Hop-by-hop 首部</h3><p>HTTP首部字段将定义成缓存代理和非缓存代理的行为。</p>
+</li>
+<li><p>端到端首部</p>
+<p>分在此类别的首部会转发给请求/响应对应的最终接收目标，且必须保存在由缓存生成的响应中。另外规定他必须被转发。</p>
+</li>
+<li><p>逐跳首部</p>
+<p>分在此类别的首部只对单次转发有效，会因通过缓存或代理而不再转发。</p>
+<h3 id="通用首部字段"><a href="#通用首部字段" class="headerlink" title="通用首部字段"></a>通用首部字段</h3><h4 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h4></li>
+<li><p>public指令(仅为响应指令)</p>
+<p>表明其他用户也可利用缓存。</p>
+</li>
+<li><p>private指令(仅为响应指令)</p>
+<p>响应只以特定的用户作为对象，对应其他用户发送过来的请求，代理服务器不会返回缓存。</p>
+</li>
+<li><p>no-cache</p>
+<p>位于请求首部：表明客户端不接受缓存过的响应，“中间”的缓存服务器必须把客户端的请求转发给源服务器。</p>
+<p>位于响应首部：响应中包含no-chche指令，则缓存服务器不对资源进行缓存。</p>
+</li>
+<li><p>no-store</p>
+<p>规定缓存不能在本地存储请求或响应的任一部分。</p>
+</li>
+<li><p>max-age</p>
+<p>当发送的请求包含max-age指令时，判断缓存资源的缓存时间数值比指定时间的数值更小，那么客户端就接收缓存的资源。值为0时，那么缓存服务器会将请求转发给源服务器。</p>
+<p>当返回的响应包含max-age指令时，缓存服务器不再对资源的有效性进行确认，max-age代表资源保存为缓存的最长时间。</p>
+<p>HTTP/1.1遇到同时存在Expries字段时，优先处理max-age。HTTP/1.0则相反。</p>
+</li>
+<li><p>s-maxage(仅为响应指令)</p>
+<p>与max-age的唯一区别是,s-maxage仅仅应用于共享缓存。而不引用于用户代理的本地缓存,等针对单用户的缓存。另外,s-maxage的优先级要高于max-age和Expries。</p>
+</li>
+<li><p>min-frassh(仅为请求指令)</p>
+<p>要求缓存服务器返回至少还未过指定时间的缓存资源。</p>
+</li>
+<li><p>max-stale</p>
+<p>指示缓存资源，过期也照样接收或返回。<br>指定数值，即使过期，在指定数值之内，依然接收或返回。</p>
+</li>
+<li><p>only-if-cached(仅为请求指令)</p>
+<p>表示客户端仅在缓存服务器本地缓存目标资源的情况下才会要求其返回。若请求缓存服务器的本地缓存无响应则返回状态码504。</p>
+</li>
+<li><p>must-revalidate(仅为响应指令)</p>
+<p>指明代理服务器会向源服务器验证即将返回的响应缓存目前是否有效。</p>
+<p>若无法连通源服务器，返回504。</p>
+<p>在该指令存在的条件下，忽略max-stale指令。</p>
+</li>
+<li><p>proxy-revalidate(仅为请求指令)</p>
+<p>要求代理服务器在接收到具有该指令的请求返回响应之前，必须再次验证资源的有效性。</p>
+</li>
+<li><p>no-transform</p>
+<p>要求缓存不能改变实体资源的媒体类型，可防止缓存或代理压缩图片等操作。</p>
+</li>
+<li><p>cache-extension token</p>
+<p>通过cache-extension标记（token），可以扩展Cache-Control首部字段的指令。</p>
+<p>extension token仅对能理解它的缓存服务器来说是有意义的，不能理解则忽略。</p>
+<h4 id="Connection"><a href="#Connection" class="headerlink" title="Connection"></a>Connection</h4><ul>
+<li>控制不再转发给代理的首部字段</li>
+<li>管理持久连接</li>
+</ul>
+<p>HTTP/1.1默认连接都是持久连接。客户端会在持久连接上连续发送请求。当服务端想明确断开连接时，则指定Connection首部字段的值为close。</p>
+<p>HTTP/1.1之前的HTTP版本的默认连接是非持久化连接，为此，要在旧的协议版本维持持续连接需要指定Connection为keep-alive。</p>
+<h4 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h4><p>表明创建HTTP报文的日期和时间</p>
+<h4 id="Pragma"><a href="#Pragma" class="headerlink" title="Pragma"></a>Pragma</h4><p>HTTP/1.1之前版本的遗留字段，仅作为和HTTP/1.0向后兼容而定义。</p>
+</li>
+</ul>
+<p>只用在客户端发送的请求中，要求所以的中间服务器不返回缓存的资源。</p>
+<p>为了兼容HTTP/1.1及其之前的版本，发送的请求会同时包含两个字段<br><figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">Cache-Control</span>: no-cache</div><div class="line"><span class="attribute">Pragma</span>: no-cache</div></pre></td></tr></table></figure></p>
+<h4 id="Trailer"><a href="#Trailer" class="headerlink" title="Trailer"></a>Trailer</h4><p>Trailer会事先说明在报文主体后记录了哪些首部字段，也用于分块编码传输。</p>
+<h4 id="Transfer-Encoding"><a href="#Transfer-Encoding" class="headerlink" title="Transfer-Encoding"></a>Transfer-Encoding</h4><p>Transfer-Encoding规定传输报文主体时采用的编码方式。</p>
+<h4 id="Upgrade"><a href="#Upgrade" class="headerlink" title="Upgrade"></a>Upgrade</h4><p>Upgrade用于检测HTTP协议及其他协议是否可使用更高的版本进行通信。</p>
+<h4 id="Via"><a href="#Via" class="headerlink" title="Via"></a>Via</h4><p>追踪客户端和服务器之间的请求和响应报文的传输路径，避免请求回环的发生。</p>
+<p>报文经过代理和网关时，会先在首部字段Via中附加该服务器的信息，再进行转发。</p>
+<h4 id="Warning"><a href="#Warning" class="headerlink" title="Warning"></a>Warning</h4><p>该首部通常会告知用户一些缓存相关问题的警告。</p>
+<h3 id="请求首部字段"><a href="#请求首部字段" class="headerlink" title="请求首部字段"></a>请求首部字段</h3><h4 id="Accept"><a href="#Accept" class="headerlink" title="Accept"></a>Accept</h4><p>用于通知服务器，用户代理可以处理的媒体类型及媒体类型的相对优先级。</p>
+<p>增加优先级，使用q=来表示权重的值。范围为0~1.0,1为最大，默认为1。</p>
+<h4 id="Accept-Charset"><a href="#Accept-Charset" class="headerlink" title="Accept-Charset"></a>Accept-Charset</h4><p>通知服务器用户代理支持的字符集和字符集的相对优先顺序。权重设置方式与Accept相同。</p>
+<h4 id="Accept-Encoding"><a href="#Accept-Encoding" class="headerlink" title="Accept-Encoding"></a>Accept-Encoding</h4><p>告知服务器用户代理支持的内容编码及内容编码的优先顺序。</p>
+<h4 id="Accept-Language"><a href="#Accept-Language" class="headerlink" title="Accept-Language"></a>Accept-Language</h4><p>告知服务器用户代理支持的自然语言集及自然语言集的优先顺序。</p>
+<h4 id="Authorization"><a href="#Authorization" class="headerlink" title="Authorization"></a>Authorization</h4><p>告知服务器，用户代理的认证信息。</p>
+<h4 id="From"><a href="#From" class="headerlink" title="From"></a>From</h4><p>告知服务器使用用户代理的电子邮件地址。</p>
+<h4 id="Host"><a href="#Host" class="headerlink" title="Host"></a>Host</h4><p>告知服务器，请求的资源所处的互联网主机名和端口号。</p>
+<h3 id="If-Match"><a href="#If-Match" class="headerlink" title="If-Match"></a>If-Match</h3><p>If-xxx的字段称为条件请求，服务器接受到附带条件的请求后，只有判断条件为真时，才会执行请求。</p>
+<h3 id="If-Modified-Since"><a href="#If-Modified-Since" class="headerlink" title="If-Modified-Since"></a>If-Modified-Since</h3><p>告知服务器若If-Modified-Since字段值早于资源的更新时间，则希望处理该请求。</p>
+<p>若再If-Modified-Since字段值的时间之后资源没有更新过，返回304状态码。</p>
+<p>获取资源的更新日期，可通过首部字段Last-Modified来确定。</p>
+<h4 id="Range"><a href="#Range" class="headerlink" title="Range"></a>Range</h4><p>告知服务器资源的指定范围，服务器返回206 Partial Content的响应。</p>
+<h4 id="Referer"><a href="#Referer" class="headerlink" title="Referer"></a>Referer</h4><p>告知服务器请求的原始资源的URI。</p>
+<h4 id="User-Agent"><a href="#User-Agent" class="headerlink" title="User-Agent"></a>User-Agent</h4><p>Use-Agent字段会将创建请求的浏览器和用户代理名称等信息传达给服务器。</p>
+<p>###响应首部字段</p>
+<h4 id="Accept-Range"><a href="#Accept-Range" class="headerlink" title="Accept-Range"></a>Accept-Range</h4><p>告知客户端服务器是否能处理范围请求，以指定获取服务端某个部分的资源。</p>
+<p>可处理时指定为btyes，反之为none。</p>
+<h4 id="Age"><a href="#Age" class="headerlink" title="Age"></a>Age</h4><p>告知客户端源服务器在多久之前创建了响应，单位为秒。</p>
+<h4 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a>ETag</h4><p>告知客户端的实体标示。</p>
+<p>服务器会为每份资源分配对应的ETag值。</p>
+<h4 id="Location"><a href="#Location" class="headerlink" title="Location"></a>Location</h4><p>可以将响应接收方引导至某个与请求URI位置不同的资源。</p>
+<p>几乎所有浏览器在接收到包含Location首部字段的响应后，都会强制性地尝试对已提示的重定向资源的访问。</p>
+<h4 id="Proxy-Authenticate"><a href="#Proxy-Authenticate" class="headerlink" title="Proxy-Authenticate"></a>Proxy-Authenticate</h4><p>将由代理服务器所要求的认证信息发送给客户端。</p>
+<h4 id="Retry-After"><a href="#Retry-After" class="headerlink" title="Retry-After"></a>Retry-After</h4><p>告知客户端多久之后再次发起请求。</p>
+<h4 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h4><p>告知客户端当前服务器上安装的HTTP服务器应用程序的信息。</p>
+<h4 id="WWW-Authenticate"><a href="#WWW-Authenticate" class="headerlink" title="WWW-Authenticate"></a>WWW-Authenticate</h4><p>用于HTTP访问认证。</p>
+<h3 id="实体首部字段"><a href="#实体首部字段" class="headerlink" title="实体首部字段"></a>实体首部字段</h3><h4 id="Allow"><a href="#Allow" class="headerlink" title="Allow"></a>Allow</h4><p>用于通知客户端能够支持的Request-URI指定资源的HTTP方法。当服服务器接受到不支持的HTTP方法时，会以状态码405 Method Not Allowed作为响应返回。</p>
+<h4 id="Content-Encoding"><a href="#Content-Encoding" class="headerlink" title="Content-Encoding"></a>Content-Encoding</h4><p>告知客户端服务端对实体的主体部分选用的内容编码方式。</p>
+<p>主要采用以下4种编码方式：</p>
+<ul>
+<li>gzip</li>
+<li>compress</li>
+<li>deflate</li>
+<li>identity<h4 id="Content-Language"><a href="#Content-Language" class="headerlink" title="Content-Language"></a>Content-Language</h4>告知客户端实体主体使用的自然语言。<h4 id="Content-Length"><a href="#Content-Length" class="headerlink" title="Content-Length"></a>Content-Length</h4>表明实体主体部分的大小，单位为字节。<h4 id="Content-Location"><a href="#Content-Location" class="headerlink" title="Content-Location"></a>Content-Location</h4>给出与报文主体部分像对应的URI。<h4 id="Content-MD5"><a href="#Content-MD5" class="headerlink" title="Content-MD5"></a>Content-MD5</h4>客户端对接受的报文主体执行相同的MD5算法，然后与首部字段的Content-MD5字段值进行比较。<h4 id="Content-Range"><a href="#Content-Range" class="headerlink" title="Content-Range"></a>Content-Range</h4>告知客户端作为响应返回的实体的哪个部分符合范围请求。<h4 id="Content-Type"><a href="#Content-Type" class="headerlink" title="Content-Type"></a>Content-Type</h4>说明主体实体内对象的媒体类型。<h4 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h4>将资源的实效日期告知客户端。<h4 id="Last-Modified"><a href="#Last-Modified" class="headerlink" title="Last-Modified"></a>Last-Modified</h4>指明资源最终修改的时间。<h3 id="为Cookie服务的首部字段"><a href="#为Cookie服务的首部字段" class="headerlink" title="为Cookie服务的首部字段"></a>为Cookie服务的首部字段</h3>Cookie的工作机制是用户识别和状态管理。<h4 id="Set-Cookie"><a href="#Set-Cookie" class="headerlink" title="Set-Cookie"></a>Set-Cookie</h4>当服务端开始准备管理客户端的状态时，会事先告知各种信息。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">NAME=VALUE</td>
+<td style="text-align:left">赋予Cookie的名称及其值（必需项）</td>
+</tr>
+<tr>
+<td style="text-align:left">expires=DATE</td>
+<td style="text-align:left">Cookie的有效期（若不指定则到浏览器关闭时为止，维持会话（Session）的时间段内）</td>
+</tr>
+<tr>
+<td style="text-align:left">path=PATH</td>
+<td style="text-align:left">将服务器上的文件目录作为Cookie的适用对象（若不指定则默认为文档所在的文件目录）</td>
+</tr>
+<tr>
+<td style="text-align:left">domain=域名</td>
+<td style="text-align:left">作为Cookie适用对象的域名（若不指定则为创建Cookie的服务器的域名）</td>
+</tr>
+<tr>
+<td style="text-align:left">Secure</td>
+<td style="text-align:left">仅在https安全通信时才会发送Cookie</td>
+</tr>
+<tr>
+<td style="text-align:left">HttpOnly</td>
+<td style="text-align:left">加以限制，使Cookie不能被JavaScript脚本访问</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>告知服务器，当客户端想获得HTTP状态管理的支持时，就会在请求中包含从服务器接收到的Cookie。</p>
+<h3 id="其他首部字段"><a href="#其他首部字段" class="headerlink" title="其他首部字段"></a>其他首部字段</h3><h4 id="X-Frame-Options"><a href="#X-Frame-Options" class="headerlink" title="X-Frame-Options"></a>X-Frame-Options</h4><p>属于HTTP响应首部，用于控制网站内容在其他Web站点的Frame标签的显示问题。</p>
+<p>字段值：</p>
+<ul>
+<li>DENY 拒绝</li>
+<li>SAMEORIGIN 仅同源域名下的页面匹配时许可<h4 id="X-XSS-Protection"><a href="#X-XSS-Protection" class="headerlink" title="X-XSS-Protection"></a>X-XSS-Protection</h4>属于HTTP响应首部，用于控制浏览器XSS防护机制的开关。<br>字段值：</li>
+<li>0 将XSS过滤设置为无效状态</li>
+<li>1 将XSS过滤设置为有效状态<h4 id="DNT"><a href="#DNT" class="headerlink" title="DNT"></a>DNT</h4>属于HTTP请求首部，全称为Do not Track，意味拒绝个人信息被收集，是表示拒绝精准广告定位的一种方法。</li>
+<li>0 同意被追踪</li>
+<li>1 拒绝被追踪<h4 id="P3P"><a href="#P3P" class="headerlink" title="P3P"></a>P3P</h4>属于HTTP响应首部，利用P3P技术，让Web网站上的个人隐私变成一种仅供程序可理解的形式，已达到保护用户隐私的目的。</li>
+</ul>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://60kmlh.github.io/2017/10/20/《图解http》第六章笔记/" data-id="cj9749l56000wg1b4nvp3rfty" class="article-share-link">分享到</a><div class="tags"><a href="/tags/http/">http</a></div><div class="post-nav"><a href="/2017/10/20/html标签语义化的区别/" class="pre">html标签语意化的区别</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://60kmlh.github.io"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/公共组件/">公共组件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作总结/">工作总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/测试/">测试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/笔记/">笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译/">翻译</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/function/" style="font-size: 15px;">function</a> <a href="/tags/FormData/" style="font-size: 15px;">FormData</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/语意化/" style="font-size: 15px;">语意化</a> <a href="/tags/iOS/" style="font-size: 15px;">iOS</a> <a href="/tags/iframe/" style="font-size: 15px;">iframe</a> <a href="/tags/bug/" style="font-size: 15px;">bug</a> <a href="/tags/object/" style="font-size: 15px;">object</a> <a href="/tags/promise/" style="font-size: 15px;">promise</a> <a href="/tags/vue/" style="font-size: 15px;">vue</a> <a href="/tags/http/" style="font-size: 15px;">http</a> <a href="/tags/正则表达式/" style="font-size: 15px;">正则表达式</a> <a href="/tags/gulp/" style="font-size: 15px;">gulp</a> <a href="/tags/效率/" style="font-size: 15px;">效率</a> <a href="/tags/karma/" style="font-size: 15px;">karma</a> <a href="/tags/mocha/" style="font-size: 15px;">mocha</a> <a href="/tags/chai/" style="font-size: 15px;">chai</a> <a href="/tags/babel/" style="font-size: 15px;">babel</a> <a href="/tags/react/" style="font-size: 15px;">react</a> <a href="/tags/webpack/" style="font-size: 15px;">webpack</a> <a href="/tags/性能优化/" style="font-size: 15px;">性能优化</a> <a href="/tags/npm/" style="font-size: 15px;">npm</a> <a href="/tags/版本/" style="font-size: 15px;">版本</a> <a href="/tags/audio/" style="font-size: 15px;">audio</a> <a href="/tags/用户体验/" style="font-size: 15px;">用户体验</a> <a href="/tags/vue-router/" style="font-size: 15px;">vue-router</a> <a href="/tags/管理系统/" style="font-size: 15px;">管理系统</a> <a href="/tags/权限控制/" style="font-size: 15px;">权限控制</a> <a href="/tags/canvas/" style="font-size: 15px;">canvas</a> <a href="/tags/dpr/" style="font-size: 15px;">dpr</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/grid/" style="font-size: 15px;">grid</a> <a href="/tags/responsive/" style="font-size: 15px;">responsive</a> <a href="/tags/‘效率’/" style="font-size: 15px;">‘效率’</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/《图解http》第六章笔记/">《图解http》第六章笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/20/html标签语义化的区别/">html标签语意化的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/12/vue的Runtime   Compiler vs. Runtime-only/">vue的Runtime Compiler vs Runtime-only</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/08/使用react和vue实现支付宝微信风格的密码输入框/">使用react和vue实现支付宝微信风格的密码输入框</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/05/打造属于自己的栅格系统（翻译）/">打造属于自己的栅格系统（翻译）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/30/iOS的iframe宽度bug/">iOS的iframe宽度bug</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/24/《图解http》第五章笔记/">《图解http》第五章笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/23/《图解http》第四章笔记/">《图解http》第四章笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/16/《图解http》第三章笔记/">《图解http》第三章笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/16/《图解http》第二章笔记/">《图解http》第二章笔记</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">60kmlh.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
