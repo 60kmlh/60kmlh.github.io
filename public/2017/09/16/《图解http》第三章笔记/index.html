@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>《图解http》第三章笔记 · 60kmlh</title><meta name="description" content="《图解http》第三章笔记 - 60kmlh"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/css/gandalfr.css"><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/monokai.min.css"><link rel="search" type="application/opensearchdescription+xml" href="http://60kmlh.github.io/atom.xml" title="60kmlh"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="https://avatars1.githubusercontent.com/u/3142935?v=3&amp;s=466 or file" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">首页</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">文章</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">关于</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">《图解http》第三章笔记</h1><div class="tags"><a href="/tags/http/" class="tag-title">#http</a></div><div class="post-info">2017年9月16日</div><div class="post-content"><h2 id="HTTP报文内的HTTP信息"><a href="#HTTP报文内的HTTP信息" class="headerlink" title="HTTP报文内的HTTP信息"></a>HTTP报文内的HTTP信息</h2><h3 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h3><p>用于HTTP协议交互的信息被称为HTTP报文。HTTP报文本身是由多行（使用CRLF作换行符）数据构成的字符串文本。</p>
+<p>HTTP报文大体可分为报文首部和报文实体。两者有最初出现的空行（CRLF）来划分。</p>
+<h3 id="请求报文及响应报文的结构"><a href="#请求报文及响应报文的结构" class="headerlink" title="请求报文及响应报文的结构"></a>请求报文及响应报文的结构</h3><p>请求报文和响应报文的内容由以下数据组成：</p>
+<ul>
+<li>请求行<br>  包含用于请求的方法，请求URI和HTTP版本。</li>
+<li>状态行<br>  包含表明响应状态的状态码，原因短语和HTTP版本。</li>
+<li>首部字段<br>  包含表示请求和响应的各种条件和属性的各类首部。一般有4种首部：通用首部，请求首部，响应首部，实体首部。</li>
+<li>其他<br>  可能包含HTTP的RFC里未定义的首部。<h3 id="编码提升传输速率"><a href="#编码提升传输速率" class="headerlink" title="编码提升传输速率"></a>编码提升传输速率</h3>报文主体和实体主体的差异：</li>
+<li>报文（message）<br>  是HTTP通信中的基本单位，由8位组字节流（octet sequence，其中octet为8个比特）组成，通过HTTP通信传输。</li>
+<li>实体（entity）<br>  作为请求或响应的有效载荷数据被传输，其内容由实体首部和实体主体组成。</li>
+</ul>
+<p>HTTP报文的主体用于传输请求或响应的实体主体。</p>
+<p>通常，报文主体等于实体主体。只有当传输中进行编码操作时，实体主体的内容发生变化，才导致它和报文主体产生差异。</p>
+<p>内容编码应指明应用在实体内容上的编码格式，并保持实体信息的原样压缩。编码后的实体由客户端负责接收和解码。</p>
+<p>常用的内容编码有以下几种：</p>
+<ul>
+<li>gzip（GNU zip）</li>
+<li>compress（UNIX系统的标准压缩）</li>
+<li>deflate（zlib）</li>
+<li>identity不进行编码）<br>在传输大数据容量时，通过把数据分割成多块，能够让浏览器逐步显示画面。这种把主体实体分块的功能称为分块传输编码（Chunked Transfer Coding）。</li>
+</ul>
+<p>分块传输编码会将实体主体分成多个部分（块）。每一块都会用十六进制来标记大小，而实体主体的最后一块会用’0(CRLF)’来标记。</p>
+<p>使用分块传输编码的实体主体会由接收的客户端负责解码，恢复到编码之前的实体主体。</p>
+<h3 id="发送多种数据的多部分对象集合"><a href="#发送多种数据的多部分对象集合" class="headerlink" title="发送多种数据的多部分对象集合"></a>发送多种数据的多部分对象集合</h3><p>多部分对象集合包含的对象如下：</p>
+<ul>
+<li>multipart/form-data<br>  在Web表单上传时使用</li>
+<li>multipart/byteranges<br>  状态码206（Partial Content，部分内容）响应报文包含了多个范围的内容时使用。<br>在HTTP报文中使用多部分对象集合时，需要在首部字段里加上Content-Type。</li>
+</ul>
+<p>使用boundary字符串来划分多部分对象集合指明的各类实体。</p>
+<h3 id="获取部分内容的范围请求"><a href="#获取部分内容的范围请求" class="headerlink" title="获取部分内容的范围请求"></a>获取部分内容的范围请求</h3><p>指定范围发送的请求叫做范围请求（Range Request）。</p>
+<p>执行范围请求时，会使用首部字段Range来指定资源是byte范围。byte范围的指定形式如下：</p>
+<ul>
+<li>5001 ~ 10000字节<br>  Range: bytes=5001-10000</li>
+<li>从5001字节之后到全部<br>  Range: bytes=5001-</li>
+<li>从一开始到3000字节和5000字节到7000字节的多重范围<br>  bytes: -3000, 5000-7000<br>针对范围请求，响应会返回状态码为206 Partial Content的响应报文。</li>
+</ul>
+<p>对多重范围的范围请求，响应会在首部字段标明Content-Type为multipart/byteranges后返回响应报文。</p>
+<p>如果服务器端无法响应范围请求，则会返回状态码200 OK和完整的实体内容。</p>
+<h3 id="内容协商返回最适合的内容"><a href="#内容协商返回最适合的内容" class="headerlink" title="内容协商返回最适合的内容"></a>内容协商返回最适合的内容</h3><p>内容协商（Content Negotiation）机制是指客户端和服务端就就响应的资源内容进行交涉，然后提供给客户端最为合适的资源。</p>
+<p>内容协商会以响应资源的语言、字符集、编码方式等作为判断的基准。如以下的首部字段，可作为基准：</p>
+<ul>
+<li>Accept</li>
+<li>Accept-charset</li>
+<li>Accept-Encoding</li>
+<li>Accept-Language </li>
+<li>Content-Language<br>内容协商技术有以下三种类型：</li>
+<li>服务器驱动协商（Server-driven Negotiation）</li>
+<li>客户端驱动协商（Agent-driven Negotiation）</li>
+<li>透明协商（Transparent Negotiation）</li>
+</ul>
+</div></article></div></main><footer><div class="paginator"><a href="/2017/09/15/《图解http》第一章笔记/" class="prev">上一篇</a><a href="/2017/09/16/《图解http》第二章笔记/" class="next">下一篇</a></div><div class="copyright"><p>© 2016 - 2019 <a href="http://60kmlh.github.io">60kmlh</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/MikeCoder/hexo-theme-gandalfr" target="_blank">hexo-theme-gandalfr</a>.</p></div></footer></div><script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js" crossorigin="anonymous"></script><script src="//cdn.bootcss.com/jquery/3.1.1/jquery.js" crossorigin="anonymous"></script><script>$(document).ready(function() { hljs.configure({useBR: true}); $('pre').each(function(i, block) { hljs.highlightBlock(block); }); });</script></body></html>
