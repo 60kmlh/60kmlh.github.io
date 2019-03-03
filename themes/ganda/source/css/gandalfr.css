@@ -821,7 +821,7 @@ main.container {
     header .nav {
       margin-right: 40px; } }
 @media screen and (max-width: 700px) {
-  .tagcloud {
+  #resCanvas {
     display: none !important; }
 
   .wrap {
