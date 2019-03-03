@@ -10,6 +10,14 @@ main.container {
     }
     header {
         margin: 0px 40px 20px;
+        .title_wrap {
+            float: left;
+            margin-left:50px;
+            margin-top: 60px;
+        }
+        .nav {
+            margin-right: 40px;
+        }
     }
 }
 
@@ -27,7 +35,7 @@ main.container {
         }
         a.logo-link,
         ul.nav.nav-list {
-            padding-top: 40px;;
+            padding-bottom: 40px;;
             float: none;
             display: block;
             text-align: center;
