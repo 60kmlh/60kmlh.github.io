@@ -423,9 +423,9 @@ table {
     vertical-align: text-top; }
 
 header {
-  background-image: url("https://img3.doubanio.com/view/photo/l/public/p2532209904.webp");
+  background-image: url("https://i.loli.net/2019/03/03/5c7bc6e81d40e.jpg");
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center 35%;
   background-size: cover;
   min-height: 60px;
   height: 300px;
@@ -437,7 +437,7 @@ header {
     float: left; }
   header .nav {
     float: right;
-    margin-top: 40px !important; }
+    margin-top: 40px; }
   header .logo-link img {
     height: 60px;
     border-radius: 20px; }
@@ -828,17 +828,21 @@ main.container {
   .wrap {
     width: 100%; }
 
-  header .title_wrap {
-    padding-top: 100px;
-    float: none; }
-  header a.logo-link,
-  header ul.nav.nav-list {
-    padding-bottom: 40px;
-    float: none;
-    display: block;
-    text-align: center; }
-  header li.nav-list-item {
-    padding: 10px 10px; }
+  header {
+    height: 230px; }
+    header .title_wrap {
+      padding-top: 70px;
+      float: none; }
+    header a.logo-link,
+    header ul.nav.nav-list {
+      margin-top: 30px;
+      float: none;
+      display: block;
+      text-align: center; }
+    header li.nav-list-item {
+      padding: 10px 10px; }
+      header li.nav-list-item a {
+        color: #ffffff; }
 
   main.container,
   .home.post-list,
