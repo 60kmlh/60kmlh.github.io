@@ -423,13 +423,21 @@ table {
     vertical-align: text-top; }
 
 header {
+  background-image: url("http://huhaonan.github.io/favcon.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   min-height: 60px;
-  overflow: auto; }
+  height: 300px;
+  border-radius: 0px 0px 10px 10px;
+  position: relative;
+  /* 打印效果 */
+  /* 光标闪啊闪 */ }
   header .logo-link {
     float: left; }
   header .nav {
     float: right;
-    left: 80px; }
+    margin-right: 40px !important;
+    margin-top: 40px !important; }
   header .logo-link img {
     height: 60px;
     border-radius: 20px; }
@@ -439,11 +447,37 @@ header {
     header .nav-list-item a {
       font-size: 16px;
       line-height: 1.4; }
-  header .bg_img {
-    position: absolute;
-    width: 100%;
-    height: auto; }
-
+  header .title_wrap {
+    text-align: center;
+    float: left;
+    margin-left: 50px;
+    margin-top: 60px;
+    min-width: 150px;
+    font-size: 24px; }
+    header .title_wrap p {
+      margin: 0;
+      padding: 0;
+      font-weight: bolder;
+      font-style: italic; }
+  header .subtitle {
+    font-size: 16px; }
+  header .typing {
+    display: inline-block;
+    width: 8em;
+    white-space: nowrap;
+    border-right: 2px solid transparent;
+    animation: typing 2s steps(8, end), blink-caret 0.75s 3;
+    overflow: hidden; }
+@keyframes typing {
+  from {
+    width: 0; }
+  to {
+    width: 8em; } }
+@keyframes blink-caret {
+  from, to {
+    box-shadow: 1px 0 0 0 transparent; }
+  50% {
+    box-shadow: 1px 0 0 0; } }
 .home.post-list {
   margin: 2em 0; }
   .home.post-list .post-list-item {
@@ -783,9 +817,7 @@ main.container {
     margin: 0 auto; }
 
   header {
-    padding: 20px 100px; }
-    header .bg_img {
-      left: -20px; } }
+    margin: 0px 40px 20px; } }
 @media screen and (max-width: 700px) {
   .tagcloud {
     display: none !important; }
@@ -793,17 +825,17 @@ main.container {
   .wrap {
     width: 100%; }
 
-  header {
-    padding: 20px 0; }
-    header a.logo-link,
-    header ul.nav.nav-list {
-      float: none;
-      display: block;
-      text-align: center; }
-    header li.nav-list-item {
-      padding: 10px 10px; }
-    header .bg_img {
-      left: 0; }
+  header .title_wrap {
+    padding-top: 100px;
+    float: none; }
+  header a.logo-link,
+  header ul.nav.nav-list {
+    padding-top: 40px;
+    float: none;
+    display: block;
+    text-align: center; }
+  header li.nav-list-item {
+    padding: 10px 10px; }
 
   main.container,
   .home.post-list,

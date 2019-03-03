@@ -9,7 +9,7 @@ main.container {
         margin: 0 auto;
     }
     header {
-        padding: 20px 100px;
+        margin: 0px 40px 20px;
     }
 }
 
@@ -21,9 +21,13 @@ main.container {
         width: 100%;
     }
     header {
-        padding: 20px 0;
+        .title_wrap {
+            padding-top: 100px;
+            float: none;
+        }
         a.logo-link,
         ul.nav.nav-list {
+            padding-top: 40px;;
             float: none;
             display: block;
             text-align: center;
