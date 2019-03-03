@@ -71,3 +71,7 @@ deploy:
   type: git
   repository: https://github.com/60kmlh/60kmlh.github.io 
   branch: master
+
+# hexo-tag-cloud
+tag_cloud:
+  textFont: 'Trebuchet MS'
