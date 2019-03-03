@@ -8,6 +8,7 @@ categories: ['笔记']
 (1) 函数定义表达式
 
 声明的变量会提升，赋值操作不会提升。
+<!--more-->
 ````javascript
 var fn = function(){
     //do somethings

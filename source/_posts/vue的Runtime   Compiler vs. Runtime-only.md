@@ -5,7 +5,7 @@ tags: ['vue']
 categories: ['笔记']
 ---
 在vue的官方文档中可以得知，vue有两种不同的构建方式，运行时+编译器（Runtime+Compiler）和只包含运行时（Runtime-only）。
-
+<!--more-->
 两者的区别是：
 
 运行时+编译器是完整版的构建，即vue.common.js,支持创建vue实例时，传入template选项。编译器会将模板编译成渲染函数。

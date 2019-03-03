@@ -6,6 +6,7 @@ categories: ['笔记']
 ---
 ## 简介
 babel是一个javascript语法的编译器，借助babel，我们可以使用新的javascript语法和api，编译成低版本的javascript语法，能被低版本的浏览器识别，解决浏览器的兼容性问题。
+<!--more-->
 ## 使用
 使用babel主要是学会babel的配置,并安装相应插件,告诉babel我们需要编译成哪个版本的javascript。
 

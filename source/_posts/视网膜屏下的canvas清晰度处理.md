@@ -6,6 +6,7 @@ categories: ['工作总结']
 ---
 ## 背景
 最近使用图表插件在移动端绘制canvas图表的时候，发现画出来的图很模糊。经过排查和查询相关资料，发现和视网膜屏设备的设备像素比有关。
+<!--more-->
 ## 相关知识
 ### canvas的width 和 canvas的style.width
 style.width是用来设定canvas元素在浏览器中被渲染的宽度（高度同理）

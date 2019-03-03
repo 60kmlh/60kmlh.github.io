@@ -5,7 +5,7 @@ tags: ['npm','版本']
 categories: ['工具']
 ---
 之前有新同事接手项目，npm包安装完后，发现有功能失效了，经过排查后发现，有个依赖包安装完后的版本和package.json写的不一样。同时包的api有大的变动，导致了问题的发生。package.json为什么没有“生效”，带着疑惑，在官网上面找到了答案。
-
+<!--more-->
 # semantic versioning
 根据官网的描述，npm包的版本采用semantic versioning，即语义化版本。
 

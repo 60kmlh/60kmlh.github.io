@@ -5,7 +5,7 @@ tags: ['FormData']
 categories: ['笔记']
 ---
 之前项目里需要用到传很多参数的表单提交，原生的表单提交过程可控性差，又不想手动拼接很长的参数，于是决定学习和使用FormData进行替代。
-
+<!--more-->
 # 概念
 XMLHttpRequest Level 2添加了一个新的接口FormData.利用FormData对象,我们可以通过JavaScript用一些键值对来模拟一系列表单控件,我们还可以使用XMLHttpRequest的send()方法来异步的提交这个"表单".比起普通的ajax,使用FormData的最大优点就是我们可以异步上传一个二进制文件。
 #基本使用

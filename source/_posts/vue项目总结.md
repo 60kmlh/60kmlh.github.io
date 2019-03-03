@@ -69,6 +69,7 @@ categories: ['工作总结']
                mutation-type.js
                mutations.js
 ````
+<!--more-->
 assets文件夹存放img，css等静态资源。
 
 components文件夹存放公共组件。

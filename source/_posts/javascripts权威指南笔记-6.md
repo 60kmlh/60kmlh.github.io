@@ -13,7 +13,7 @@ categories: ['笔记']
 创建对象最简单的方式就是在JavaScript代码中使用对象直接量(key / value)。
 
 在ECMAScript 5中，对象直接量中的最后一个属性后的逗号将忽略，且在ECMAScript 3的大部分实行中也可以忽略这个逗号，但在IE中则报错。
-
+<!--more-->
 所有通过对象直接量创建的对象具有同一个原型对象，即Object.prototype。Object.prototype没有原型。
 
 2. 使用new运算符

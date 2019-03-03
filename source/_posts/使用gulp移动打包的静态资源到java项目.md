@@ -6,6 +6,7 @@ categories: ['工具']
 ---
 ## 背景
 在java项目里使用vue作为前端框架，使用webpack作为打包工具。打包完的静态资源需要移动到java项目的WebContent文件夹里，本来webpack可以指定输出的路径，但由于HtmlWebpackPlugin插件不支持使用jsp作为模板，因此决定引入gulp来实现这个功能。
+<!--more-->
 ## 目标
 将webpack打包完的js,css，插入到jsp模板里，同时将静态资源移动java项目WebContent里对应的文件夹下面的(这个功能也可以用webpack实现)。
 ## 实现

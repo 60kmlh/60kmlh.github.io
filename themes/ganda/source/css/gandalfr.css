@@ -454,8 +454,7 @@ header {
     header .title_wrap p {
       margin: 0;
       padding: 0;
-      font-weight: bolder;
-      font-style: italic; }
+      font-weight: bolder; }
   header .subtitle {
     font-size: 16px; }
   header .typing {
@@ -544,13 +543,13 @@ header {
 .post-content h4 a:before, .post-content h5 a:before, .post-content h6 a:before {
   content: ""; }
 .post-content h2 {
-  font-size: 22px; }
-.post-content h3 {
   font-size: 20px; }
-.post-content h4 {
+.post-content h3 {
   font-size: 18px; }
-.post-content h5, .post-content h6 {
+.post-content h4 {
   font-size: 16px; }
+.post-content h5, .post-content h6 {
+  font-size: 14px; }
 .post-content a {
   color: #42b983;
   word-break: break-all; }

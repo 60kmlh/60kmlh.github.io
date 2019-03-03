@@ -10,7 +10,7 @@ categories: ['测试']
 Karma是一个基于Node.js的JavaScript测试执行过程管理工具（Test Runner）。
 
 负责提供测试的浏览器环境，执行测试框架，已经生成覆盖率报告。
-
+<!--more-->
 关于karma的配置
 ````javascript
 var webpackConfig = require('../../build/webpack.test.conf')
