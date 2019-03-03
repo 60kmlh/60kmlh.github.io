@@ -423,8 +423,9 @@ table {
     vertical-align: text-top; }
 
 header {
-  background-image: url("http://huhaonan.github.io/favcon.png");
+  background-image: url("https://img3.doubanio.com/view/photo/l/public/p2532209904.webp");
   background-repeat: no-repeat;
+  background-position: center center;
   background-size: cover;
   min-height: 60px;
   height: 300px;
