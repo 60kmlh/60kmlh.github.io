@@ -1,6 +1,6 @@
 ---
 title: Promise的规范和实现
-date: 2018-02-03
+date: 2018-10-06
 tags: ['promise', 'es6']
 categories: ['规范']
 ---
