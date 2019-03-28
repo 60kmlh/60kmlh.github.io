@@ -1,7 +1,7 @@
 ---
 title: Git Proxy
 date: 2017-07-16
-tags: ['git', 'proxy]
+tags: ['git', 'proxy']
 categories: ['git']
 ---
 ## git设置代理
