@@ -167,7 +167,6 @@ function HigherOrderComponent(WrappedComponent) {
     };
 }
 ````
-####
 ## 高阶组件存在的问题
 * 静态方法丢失
 因为原始组件被包裹于一个容器组件内，也就意味着新组件会没有原始组件的任何静态方法。
