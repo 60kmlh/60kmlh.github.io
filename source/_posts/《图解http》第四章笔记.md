@@ -17,7 +17,7 @@ categories: ['笔记']
 2xx   | Success（成功状态码） | 请求正常，处理完毕
 3xx   | Redirection（重定向状态码） | 需要进行附加操作以完成请求
 4xx   | Client Error（客户端错误性状态码） | 服务器无法处理请求
-4xx   | Server Error（服务端错误状态码） | 服务器处理请求出错
+5xx   | Server Error（服务端错误状态码） | 服务器处理请求出错
 ### 2xx 成功
 * 200 OK
     表示从客户端发来的请求被服务端正常处理了
