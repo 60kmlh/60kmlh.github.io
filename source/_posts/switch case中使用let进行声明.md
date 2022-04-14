@@ -1,6 +1,6 @@
 ---
 title: switch 语句内的块级作用域
-date: 2017-04-18
+date: 2021-03-04
 tags: ["switch/case"]
 categories: ["javascript"]
 ---

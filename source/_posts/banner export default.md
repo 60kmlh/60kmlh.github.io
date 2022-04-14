@@ -1,6 +1,6 @@
 ---
 title: ES6 module 中使用 export default 的缺点
-date: 2017-04-18
+date: 2019-05-18
 tags: ["es6"]
 categories: ["javascript"]
 ---

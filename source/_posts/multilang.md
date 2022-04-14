@@ -1,6 +1,6 @@
 ---
 title: 使用 css 伪类实现多语言样式
-date: 2017-04-18
+date: 2020-11-18
 tags: ["css"， "i18n"]
 categories: [""]
 ---

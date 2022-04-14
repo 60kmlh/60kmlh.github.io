@@ -1,6 +1,6 @@
 ---
 title: TypeScript 中 const enum 和 enum 的区别
-date: 2017-04-18
+date: 2021-11-13
 tags: ["typescript"]
 categories: ["typescript"]
 ---

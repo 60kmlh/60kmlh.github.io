@@ -1,6 +1,6 @@
 ---
 title: TypeScript 中对象通过中括号读取属性值报错的问题
-date: 2017-04-18
+date: 2021-07-15
 tags: ["typescript"]
 categories: [""]
 ---
