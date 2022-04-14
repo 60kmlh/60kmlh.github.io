@@ -19,7 +19,7 @@ console.log(Color.Red);
 // output.js
 console.log(0 /* Red */);
 ```
-
+<!--more-->
 ## enum 会编译成运行时的对象
 
 ```ts

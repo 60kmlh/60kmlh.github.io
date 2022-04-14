@@ -14,7 +14,7 @@ categories: ["vue"]
 vuw 2.x 将 filter 设计为纯函数，不依赖 this 上下文。 [来源](https://github.com/vuejs/vue/issues/5998)
 
 ## 解决办法
-
+<!--more-->
 1. 使用 computed 或者 methods 替代，filter 应该是纯函数，不应该依赖外界或者对外界有所影响。（vue 作者推荐）
 
 2. 将需要用到的 this 上下文数据作为参数，传进 filter function。

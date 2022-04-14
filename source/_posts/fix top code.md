@@ -10,7 +10,7 @@ categories: [""]
 ## 原理：通过监听吸顶元素的滚动位置来切换样式。
 
 ## 代码
-
+<!--more-->
 ```javascript
 const el = this.$refs.card;
 const offsetTop = el && el.getBoundingClientRect().top;

@@ -19,7 +19,7 @@ function getKeyValue(arg: string) {
 该代码在 typescript 中会报错：Element implicitly has an 'any' type because expression of type 'string' can't be used to index。
 
 ## 原因
-
+<!--more-->
 key 只声明为 string 的话，typescript 为了防止运行时传入了未知的 key 进行取值，返回了 undefined 报错，于是对这种写法进行警告。
 
 ## 解决办法

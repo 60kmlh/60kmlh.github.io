@@ -12,7 +12,7 @@ https://docs.google.com/document/d/FILE_ID/edit?usp=sharing
 ## 将 /edit 用 /export 替换掉，然后添加上文件的格式，例如 doc，xlsx，pdf 等，然后该文件就能被保存了。
 
 https://docs.google.com/document/d/FILE_ID/export?format=xlsx
-
+<!--more-->
 ## Google 电子表格: 公开的电子表格链接格式为：
 
 https://docs.google.com/spreadsheets/d/FILE_ID/edit?usp=sharing
