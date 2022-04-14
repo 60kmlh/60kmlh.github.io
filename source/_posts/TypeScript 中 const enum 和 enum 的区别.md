@@ -4,7 +4,6 @@ date: 2021-11-13
 tags: ["typescript"]
 categories: ["typescript"]
 ---
-
 ## const enum 编译时会把实际用到的枚举成员替换成常量值
 
 ```ts
